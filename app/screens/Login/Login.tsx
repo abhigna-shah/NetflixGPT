@@ -10,11 +10,9 @@ import {
 import firebaseSingleton from "~/utils/firebase";
 import { useAppDispatch } from "~/store/appStore";
 import { addUser } from "~/store/slices/user.slice";
-import { useNavigate } from "react-router";
 
 export default function Login() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [isSignInForm, setIsSignInForm] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -52,7 +50,6 @@ export default function Login() {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log("Signup User ==", user);
 
           updateProfile(user, {
             displayName: name.current?.value ?? "User",
@@ -63,7 +60,6 @@ export default function Login() {
                 const { uid, email, displayName } =
                   firebaseSingleton.auth.currentUser;
                 dispatch(addUser({ uid, email, displayName }));
-                navigate("/browse");
               }
             })
             .catch((error) => {
@@ -88,8 +84,6 @@ export default function Login() {
           const user = userCredential.user;
           const { uid, email, displayName } = user;
           dispatch(addUser({ uid, email, displayName }));
-          console.log("Login User ==", user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -97,8 +91,6 @@ export default function Login() {
           setErrorMessage(errorCode + " - " + errorMessage);
         });
     }
-
-    console.log(message);
   };
 
   return (

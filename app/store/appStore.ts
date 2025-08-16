@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import userReducer from "./slices/user.slice";
+import moviesReducer from "./slices/movies.slice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    movies: moviesReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });

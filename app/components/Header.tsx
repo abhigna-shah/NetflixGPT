@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { NETFLIX_LOGO } from "~/utils/constants";
+import { NETFLIX_LOGO, USER_ICON } from "~/utils/constants";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import firebaseSingleton from "~/utils/firebase";
 import { useAppSelector, useAppDispatch } from "~/store/appStore";
@@ -14,20 +14,22 @@ const Header = () => {
   useEffect(() => {
     const firebaseInstance = firebaseSingleton.getInstance();
     firebaseInstance.initializeFirebase();
-    onAuthStateChanged(firebaseSingleton.auth, (user) => {
+    const unsubscribe = onAuthStateChanged(firebaseSingleton.auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
-
-        console.log("Reached here in state changed");
+        navigate("/browse");
       } else {
         // User is signed out due to some token expiration
         dispatch(removeUser());
         navigate("/");
       }
     });
+
+    //unsubscribe when component unmounts
+    return () => unsubscribe();
   }, [firebaseSingleton.auth]);
 
   const handleSignOut = () => {
@@ -36,7 +38,6 @@ const Header = () => {
         // Sign-out successful.
         // User is signed out
         dispatch(removeUser());
-        navigate("/");
       })
       .catch((error) => {
         // An error happened.
@@ -51,11 +52,7 @@ const Header = () => {
       />
       {user && (
         <div className="flex p-2 justify-center items-center">
-          <img
-            className="w-12 h-12"
-            src="https://occ-0-3061-3647.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXYofKdCJceEP7pdxcEZ9wt80GsxEyXIbnG_QM8znksNz3JexvRbDLr0_AcNKr2SJtT-MLr1eCOA-e7xlDHsx4Jmmsi5HL8.png?r=1d4"
-            alt="user_icon"
-          />
+          <img className="w-12 h-12" src={USER_ICON} alt="user_icon" />
           <button
             onClick={handleSignOut}
             className="font-bold text-white ml-2 cursor-pointer"
