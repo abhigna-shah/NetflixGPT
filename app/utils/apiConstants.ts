@@ -11,6 +11,21 @@ export const URLS = {
   getMovieVideosUrl: (id: number): string =>
     `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
 
+  getImageUrl: (imageKey: string, width: string = "w500"): string =>
+    `https://image.tmdb.org/t/p/${width}/${imageKey}`,
+
   getNowPlayingUrl: (): string =>
-    `https://api.themoviedb.org/3/movie/now_playing?page=1`,
+    `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
+
+  getTrendingUrl: (): string =>
+    `https://api.themoviedb.org/3/trending/movie/day?language=en-US`,
+
+  getTopRatedUrl: (): string =>
+    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
+
+  getPopularUrl: (): string =>
+    `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`,
+
+  getUpcomingUrl: (): string =>
+    `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
 };

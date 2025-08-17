@@ -4,10 +4,9 @@ import { useAppSelector } from "~/store/appStore";
 
 const VideoContainer = () => {
   const movies = useAppSelector((store) => store.movies?.nowPlayingMovies);
-  if (movies === null) return;
+  if (!movies) return;
 
-  const mainMovie = movies[0];
-
+  const mainMovie = movies[1];
   const { original_title, overview, id } = mainMovie;
 
   return (
