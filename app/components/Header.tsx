@@ -4,12 +4,17 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import firebaseSingleton from "~/utils/firebase";
 import { useAppSelector, useAppDispatch } from "~/store/appStore";
 import { addUser, removeUser } from "~/store/slices/user.slice";
+import {
+  clearGptMovieResults,
+  toggleGptSearchView,
+} from "~/store/slices/gpt.slice";
 import { useNavigate } from "react-router";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector((store) => store.user.user);
+  const showGptSearch = useAppSelector((store) => store.gpt.showGptSearch);
 
   useEffect(() => {
     const firebaseInstance = firebaseSingleton.getInstance();
@@ -43,6 +48,11 @@ const Header = () => {
         // An error happened.
       });
   };
+
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+    dispatch(clearGptMovieResults());
+  };
   return (
     <div className="absolute z-20 px-[2%] sm:px-[5%] md:px-[7%] Py-2 bg-gradient-to-b from-black flex justify-between">
       <img
@@ -52,6 +62,12 @@ const Header = () => {
       />
       {user && (
         <div className="flex p-2 justify-center items-center">
+          <button
+            onClick={handleGptSearchClick}
+            className="py-3 px-4 mx-4 bg-red-500 text-white rounded-sm cursor-pointer"
+          >
+            {showGptSearch ? "Home" : "GPT Search"}
+          </button>
           <img className="w-12 h-12" src={USER_ICON} alt="user_icon" />
           <button
             onClick={handleSignOut}
