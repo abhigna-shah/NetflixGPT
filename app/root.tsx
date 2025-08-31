@@ -15,7 +15,7 @@ import firebaseSingleton from "./utils/firebase";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Netflix GPT - your movies recommendation friend!" },
+    { title: "Netflix GPT - a movie GPT" },
     { name: "description", content: "Welcome to Netflix GPT!" },
   ];
 }
