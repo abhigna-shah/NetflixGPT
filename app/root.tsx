@@ -13,6 +13,13 @@ import { Provider } from "react-redux";
 import { store } from "~/store/appStore";
 import firebaseSingleton from "./utils/firebase";
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Netflix GPT - your movies recommendation friend!" },
+    { name: "description", content: "Welcome to Netflix GPT!" },
+  ];
+}
+
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
