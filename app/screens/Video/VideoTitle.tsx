@@ -8,9 +8,13 @@ interface VideoTitleProps {
 
 const VideoTitle = ({ title, overview }: VideoTitleProps) => {
   return (
-    <div className="w-screen aspect-video pt-[20%] px-24 absolute text-white bg-gradient-to-r from-black">
-      <h1 className="text-6xl font-bold">{title}</h1>
-      <p className="py-6 text-lg w-1/4">{overview}</p>
+    <div className="w-screen aspect-video pt-[18%] px-24 absolute text-white bg-gradient-to-r from-black">
+      <h1 className="text-6xl font-bold w-1/2">
+        <div className="line-clamp-2">{title}</div>
+      </h1>
+      <p className="py-6 text-lg w-1/4">
+        <span className="line-clamp-4">{overview}</span>
+      </p>
       <div className="pt-2">
         <button className="bg-white text-black p-4 px-12 text-xl rounded-md cursor-pointer hover:bg-white/70">
           ▶ Play
