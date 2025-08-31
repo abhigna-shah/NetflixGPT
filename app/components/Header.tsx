@@ -54,27 +54,29 @@ const Header = () => {
     dispatch(clearGptMovieResults());
   };
   return (
-    <div className="absolute z-20 px-[2%] sm:px-[5%] md:px-[7%] Py-2 bg-gradient-to-b from-black flex justify-between">
+    <div className="flex flex-col md:flex-row absolute z-20 px-[2%] sm:px-[5%] md:px-[7%] Py-2 bg-gradient-to-b from-black justify-between">
       <img
-        className="w-[40%] @min-[568px]:w-[30%] sm:w-[20%] m:w-[16%]"
+        className="mx-auto md:mx-0 w-[40%] @min-[568px]:w-[30%] sm:w-[20%] m:w-[16%]"
         src={NETFLIX_LOGO}
         alt="logo"
       />
       {user && (
-        <div className="flex p-2 justify-center items-center">
+        <div className="flex justify-between md:justify-center p-2 items-center">
           <button
             onClick={handleGptSearchClick}
             className="py-3 px-4 mx-4 bg-red-500 text-white rounded-sm cursor-pointer"
           >
             {showGptSearch ? "Home" : "GPT Search"}
           </button>
-          <img className="w-12 h-12" src={USER_ICON} alt="user_icon" />
-          <button
-            onClick={handleSignOut}
-            className="font-bold text-white ml-2 cursor-pointer"
-          >
-            (Sign Out)
-          </button>
+          <div className="flex">
+            <img className="w-12 h-12" src={USER_ICON} alt="user_icon" />
+            <button
+              onClick={handleSignOut}
+              className="font-bold text-white ml-2 cursor-pointer"
+            >
+              (Sign Out)
+            </button>
+          </div>
         </div>
       )}
     </div>

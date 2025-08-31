@@ -96,16 +96,15 @@ export default function Login() {
   return (
     <div>
       <Header />
-      <div className="absolute w-[100%] h-[100%] overflow-hidden">
-        <div className="absolute w-[100%] h-[100%] z-10 bg-black/60" />
+      <div className="fixed">
         <img
-          className="absolute w-[100%] h-[100%] object-cover object-center"
+          className="h-screen w-screen object-cover object-center"
           src={BG_IMG}
           alt="logo"
         />
       </div>
       <form
-        className="absolute w-3/12 p-8 z-20 bg-black/60 my-30 mx-auto right-0 left-0 text-white"
+        className="absolute w-full md:w-6/12 lg:w-4/12 xl:w-3/12 p-8 z-20 bg-black/60 my-30 mx-auto right-0 left-0 text-white"
         onSubmit={(e) => e.preventDefault()}
       >
         <h1 className="font-bold text-3xl py-4">

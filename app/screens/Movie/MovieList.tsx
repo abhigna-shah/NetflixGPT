@@ -8,8 +8,10 @@ interface MovieListProps {
 
 const MovieList = ({ title, movies }: MovieListProps) => {
   return (
-    <div className="px-6">
-      <h1 className="text-3xl py-4 text-white">{title}</h1>
+    <div className="px-0 md:px-6">
+      <h1 className="text-xl md:text-2xl lg:text-3xl py-4 text-white">
+        {title}
+      </h1>
       <div className="flex overflow-x-scroll">
         <div className="flex">
           {movies.map((movie) => (

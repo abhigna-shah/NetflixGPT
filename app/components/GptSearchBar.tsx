@@ -63,7 +63,7 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[10%] mx-[25%] w-1/2 flex justify-center items-center">
+    <div className="pt-[34%] sm:pt-[20%] md:pt-[10%] mx-[1%] sm:mx-[5%] md:mx-[20%] flex justify-center items-center">
       <form
         className="bg-black w-[100%] grid grid-cols-12 justify-center"
         onSubmit={(e) => e.preventDefault()}
@@ -80,7 +80,8 @@ const GptSearchBar = () => {
           disabled={isLoading}
         >
           {isLoading && <Loader />}
-          {!isLoading && <>Search</>}
+          {!isLoading && <span className="block sm:hidden">🔍</span>}
+          {!isLoading && <span className="hidden sm:block"> Search </span>}
         </button>
       </form>
     </div>
